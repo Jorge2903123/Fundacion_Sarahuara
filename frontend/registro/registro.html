@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --teal:      #4ECBA0;
+      --teal-dark: #38A882;
+      --bg:        #F4F2ED;
+      --card:      #FAFAF7;
+      --border:    #E0DDD5;
+      --text:      #1C2B2B;
+      --muted:     #7A8A85;
+      --shadow:    0 24px 64px rgba(0,0,0,.10), 0 4px 16px rgba(0,0,0,.06);
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      padding: 32px 24px;
+    }
+
+    
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 460px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      animation: slideUp .55s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+
+    .card-header {
+      padding: 18px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .card-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    
+    .card-body {
+      padding: 32px 32px 28px;
+    }
+
+  
+    .avatar-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar svg { opacity: .4; }
+
+    .avatar-label {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+   
+    .divider {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 0 0 24px;
+    }
+
+   
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 16px;
+    }
+
+   
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      appearance: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    input::placeholder { color: #BDB9B0; }
+
+    input:focus,
+    select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(78,203,160,.15);
+    }
+
+   
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+      font-size: 13px;
+    }
+
+    select {
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    select option[value=""] { color: #BDB9B0; }
+
+  
+    input[type="date"]:not(:valid) { color: #BDB9B0; }
+
+   
+    .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      cursor: pointer;
+      text-align: center;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 14px rgba(78,203,160,.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(78,203,160,.45);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+  
+    .card-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .card-footer a {
+      color: var(--teal-dark);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity .2s;
+    }
+
+    .card-footer a:hover { opacity: .7; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="card-header">
+    <div class="header-dot"></div>
+    <h1>Crear cuenta</h1>
+  </div>
+
+  <div class="card-body">
+
+    <div class="avatar-block">
+      <div class="avatar">
+        <svg width="34" height="34" fill="none" viewBox="0 0 36 36">
+          <circle cx="18" cy="14" r="7" stroke="#7A8A85" stroke-width="1.8"/>
+          <path d="M4 32c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#7A8A85" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="avatar-label">Nuevo usuario</span>
+    </div>
+
+    <hr class="divider"/>
+
+  
+    <div class="field">
+      <label for="nombre">Nombre completo</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Ej. María García López" autocomplete="name"/>
+    </div>
+
+   
+    <div class="grid-2">
+      <div class="field">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" autocomplete="email"/>
+      </div>
+      <div class="field">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="Ej. 5512345678"/>
+      </div>
+    </div>
+
+  
+    <div class="grid-2">
+      <div class="field">
+        <label for="fecha">Fecha de nacimiento</label>
+        <input type="date" id="fecha" name="fecha"/>
+      </div>
+      <div class="field">
+        <label for="genero">Género</label>
+        <div class="select-wrap">
+          <select id="genero" name="genero">
+            <option value="">Seleccionar</option>
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
+            <option value="otro"></option>
+            <option value="prefiero-no-decir"></option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contraseña -->
+    <div class="field">
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" name="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password"/>
+    </div>
+
+   
+    <div class="field">
+      <label for="confirm">Confirmar contraseña</label>
+      <input type="password" id="confirm" name="confirm" placeholder="Repite tu contraseña" autocomplete="new-password"/>
+    </div>
+
+    <button class="btn-primary" type="submit">Crear cuenta</button>
+
+    <div class="card-footer">
+      ¿Ya tienes cuenta? <a href="../login/login.html">Inicia sesión</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
