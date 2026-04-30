@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'usuarios',  # Agrega tu app 'usuarios' aquí
+    'usuarios',
+    'rest_framework',
+    'ninos',
+    'asistencia',
+    'reportes',
     
 ]
 
