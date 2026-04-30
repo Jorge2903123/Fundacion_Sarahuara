@@ -1,76 +1,50 @@
 import hashlib
-import json
-from django.http import JsonResponse
-from django.views import View
-from django.views.generic import TemplateView
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
+import secrets
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
 from .models import Usuario
 
+_tokens = {}
 
-# ── Páginas HTML ──
-class RegistroView(TemplateView):
-    template_name = "login.html"
+def _hash_password(raw: str) -> str:
+    return hashlib.sha256(raw.encode()).hexdigest()
 
-class LoginView(TemplateView):
-    template_name = "logeo.html"
+def get_usuario_desde_token(request):
+    auth_header = request.headers.get('Authorization', '')
+    if not auth_header.startswith('Token '):
+        return None, Response({'error': 'Token no proporcionado.'}, status=status.HTTP_401_UNAUTHORIZED)
+    token = auth_header.split(' ', 1)[1].strip()
+    usuario_id = _tokens.get(token)
+    if usuario_id is None:
+        return None, Response({'error': 'Token inválido o sesión expirada.'}, status=status.HTTP_401_UNAUTHORIZED)
+    try:
+        usuario = Usuario.objects.select_related('rol').get(id=usuario_id, activo=True)
+    except Usuario.DoesNotExist:
+        return None, Response({'error': 'Usuario no encontrado.'}, status=status.HTTP_401_UNAUTHORIZED)
+    return usuario, None
 
-
-# ── API Login ──
-@method_decorator(csrf_exempt, name='dispatch')
-class LoginAPIView(View):
+class LoginView(APIView):
     def post(self, request):
+        nombre_usuario = request.data.get('nombre_usuario', '').strip()
+        contrasena = request.data.get('contrasena', '')
+        if not nombre_usuario or not contrasena:
+            return Response({'error': 'nombre_usuario y contrasena son requeridos.'}, status=status.HTTP_400_BAD_REQUEST)
         try:
-            print(">>> BODY RAW:", request.body)
-            data           = json.loads(request.body)
-            nombre_usuario = data.get('nombre_usuario')
-            contrasena     = data.get('contrasena')
-
-            contrasena_hash = hashlib.sha256(contrasena.encode()).hexdigest()
-
-            # Buscar solo por nombre_usuario primero
-            usuario = Usuario.objects.get(nombre_usuario=nombre_usuario)
-
-            # Comparar hash manualmente
-            if usuario.contrasena != contrasena_hash:
-                print(">>> Hash BD:    ", repr(usuario.contrasena))
-                print(">>> Hash calc:  ", repr(contrasena_hash))
-                return JsonResponse({'ok': False, 'error': 'Credenciales incorrectas'}, status=401)
-
-            request.session['usuario_id']     = usuario.id
-            request.session['nombre_usuario'] = usuario.nombre_usuario
-
-            return JsonResponse({'ok': True})
-
+            usuario = Usuario.objects.select_related('rol').get(nombre_usuario=nombre_usuario, activo=True)
         except Usuario.DoesNotExist:
-            return JsonResponse({'ok': False, 'error': 'Usuario no encontrado'}, status=401)
-        except Exception as e:
-            return JsonResponse({'ok': False, 'error': str(e)}, status=500)
-
-# ── API Registro ──
-@method_decorator(csrf_exempt, name='dispatch')
-class RegistroAPIView(View):
-    def post(self, request):
-        try:
-            data            = json.loads(request.body)
-            nombre_usuario  = data.get('nombre_usuario')
-            nombre_completo = data.get('nombre')
-            contrasena      = data.get('contrasena')
-
-            if Usuario.objects.filter(nombre_usuario=nombre_usuario).exists():
-                return JsonResponse({'ok': False, 'error': 'El usuario ya existe'}, status=400)
-
-            contrasena_hash = hashlib.sha256(contrasena.encode()).hexdigest()
-
-            Usuario.objects.create(
-                nombre_usuario  = nombre_usuario,
-                nombre_completo = nombre_completo,
-                contrasena      = contrasena_hash,
-                activo          = 1,
-                rol_id          = 1
-            )
-
-            return JsonResponse({'ok': True})
-
-        except Exception as e:
-            return JsonResponse({'ok': False, 'error': str(e)}, status=500)
+            return Response({'error': 'Credenciales inválidas.'}, status=status.HTTP_401_UNAUTHORIZED)
+        if usuario.contrasena != _hash_password(contrasena):
+            return Response({'error': 'Credenciales inválidas.'}, status=status.HTTP_401_UNAUTHORIZED)
+        token = secrets.token_hex(32)
+        _tokens[token] = usuario.id
+        return Response({
+            'token': token,
+            'nombre_completo': usuario.nombre_completo,
+            'rol': usuario.rol.nombre,
+            'puede_editar': usuario.rol.puede_editar,
+            'puede_eliminar': usuario.rol.puede_eliminar,
+            'puede_exportar': usuario.rol.puede_exportar,
+        }, status=status.HTTP_200_OK)
