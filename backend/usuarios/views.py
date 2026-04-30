@@ -21,7 +21,7 @@ def get_usuario_desde_token(request):
     if usuario_id is None:
         return None, Response({'error': 'Token inválido o sesión expirada.'}, status=status.HTTP_401_UNAUTHORIZED)
     try:
-        usuario = Usuario.objects.select_related('rol').get(id=usuario_id, activo=True)
+        usuario = Usuario.objects.get(id=usuario_id, activo=True)
     except Usuario.DoesNotExist:
         return None, Response({'error': 'Usuario no encontrado.'}, status=status.HTTP_401_UNAUTHORIZED)
     return usuario, None
@@ -33,7 +33,7 @@ class LoginView(APIView):
         if not nombre_usuario or not contrasena:
             return Response({'error': 'nombre_usuario y contrasena son requeridos.'}, status=status.HTTP_400_BAD_REQUEST)
         try:
-            usuario = Usuario.objects.select_related('rol').get(nombre_usuario=nombre_usuario, activo=True)
+            usuario = Usuario.objects.get(nombre_usuario=nombre_usuario, activo=True)
         except Usuario.DoesNotExist:
             return Response({'error': 'Credenciales inválidas.'}, status=status.HTTP_401_UNAUTHORIZED)
         if usuario.contrasena != _hash_password(contrasena):
@@ -43,8 +43,5 @@ class LoginView(APIView):
         return Response({
             'token': token,
             'nombre_completo': usuario.nombre_completo,
-            'rol': usuario.rol.nombre,
-            'puede_editar': usuario.rol.puede_editar,
-            'puede_eliminar': usuario.rol.puede_eliminar,
-            'puede_exportar': usuario.rol.puede_exportar,
+            'rol_id': usuario.rol_id,
         }, status=status.HTTP_200_OK)
