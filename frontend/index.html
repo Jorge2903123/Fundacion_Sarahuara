@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fundación Sarahuara</title>
+  <title>Fundación Sarahuaro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
@@ -12,125 +12,71 @@
 
   <div class="shell" id="shell">
 
-    <!-- PERFIL POPUP -->
     <div class="profile-popup" id="profilePopup">
       <div class="pp-header">
         <div class="pp-av">MR</div>
         <div class="pp-name">Mayely Ramírez</div>
-        <div class="pp-role-row">
-          <span class="pp-role" id="pp-role-txt">Maestra titular</span>
-        </div>
+        <div class="pp-role-row"><span class="pp-role">Maestra — Grupo Tortugas</span></div>
         <div class="pp-status"><div class="pp-dot"></div>Sesión activa</div>
       </div>
       <div class="pp-body">
-
-        <div class="pp-row">
-          <span class="pp-ic">✉</span>
-          <span class="pp-txt">mayely@sarahuara.org</span>
-        </div>
-
-        <div class="pp-row">
-          <span class="pp-ic">📅</span>
-          <span class="pp-txt">Último acceso</span>
-          <span class="pp-val">hoy 8:32 am</span>
-        </div>
-
-        <!-- GRUPO EDITABLE -->
-        <div class="pp-row pp-row-edit" id="row-grupo" onclick="activarEdit('grupo')">
+        <div class="pp-row"><span class="pp-ic">✉</span><span class="pp-txt">mayely@sarahuaro.org</span></div>
+        <div class="pp-row"><span class="pp-ic">📅</span><span class="pp-txt">Último acceso</span><span class="pp-val">hoy 7:15 am</span></div>
+        <div class="pp-row pp-row-edit" id="row-grupo" onclick="activarEdit('grupo', event)">
           <span class="pp-ic">🏫</span>
           <span class="pp-txt">Grupo</span>
           <div class="pp-edit-wrap">
-            <span class="pp-val pp-editable" id="display-grupo">Grupo A</span>
-            <input class="pp-input" id="input-grupo" type="text" value="Grupo A" onblur="guardarEdit('grupo')" onkeydown="enterEdit(event,'grupo')" />
+            <span class="pp-val pp-editable" id="display-grupo">Tortugas</span>
+            <input class="pp-input" id="input-grupo" type="text" value="Tortugas" onblur="guardarEdit('grupo')" onkeydown="enterEdit(event,'grupo')" />
             <span class="edit-ic">✏️</span>
           </div>
         </div>
-
-        <!-- NIÑOS EDITABLE -->
-        <div class="pp-row pp-row-edit" id="row-ninos" onclick="activarEdit('ninos')">
+        <div class="pp-row pp-row-edit" id="row-ninos" onclick="activarEdit('ninos', event)">
           <span class="pp-ic">👧</span>
           <span class="pp-txt">Niños a cargo</span>
           <div class="pp-edit-wrap">
-            <span class="pp-val pp-editable" id="display-ninos">28</span>
-            <input class="pp-input" id="input-ninos" type="number" value="28" min="1" onblur="guardarEdit('ninos')" onkeydown="enterEdit(event,'ninos')" />
+            <span class="pp-val pp-editable" id="display-ninos">22</span>
+            <input class="pp-input" id="input-ninos" type="number" value="22" min="1" onblur="guardarEdit('ninos')" onkeydown="enterEdit(event,'ninos')" />
             <span class="edit-ic">✏️</span>
           </div>
         </div>
-
-        <div class="pp-row">
-          <span class="pp-ic">✓</span>
-          <span class="pp-txt">Registros este mes</span>
-          <span class="pp-val">22 días</span>
-        </div>
-
+        <div class="pp-row"><span class="pp-ic">✓</span><span class="pp-txt">Registros este mes</span><span class="pp-val">18 días</span></div>
       </div>
-      <div class="pp-footer">
-        <button class="pp-logout">Cerrar sesión</button>
-      </div>
+      <div class="pp-footer"><button class="pp-logout">Cerrar sesión</button></div>
     </div>
 
-    <!-- SIDEBAR -->
     <div class="side" id="side">
       <div class="side-logo" id="logoBtn" onclick="toggleProfile()">MR</div>
       <span class="nav-sep">principal</span>
-      <button class="side-btn active" id="btn-dashboard" onclick="nav('dashboard', this)">
-        <span class="side-ic">⊞</span><span class="side-lbl">Dashboard</span>
-      </button>
-      <button class="side-btn" id="btn-asistencia" onclick="nav('asistencia', this)">
-        <span class="side-ic">✓</span><span class="side-lbl">Asistencia</span>
-      </button>
-      <button class="side-btn" id="btn-ninos" onclick="nav('ninos', this)">
-        <span class="side-ic">❋</span><span class="side-lbl">Niños</span>
-      </button>
+      <button class="side-btn active" id="btn-dashboard" onclick="nav('dashboard', this)"><span class="side-ic">⊞</span><span class="side-lbl">Dashboard</span></button>
+      <button class="side-btn" id="btn-asistencia" onclick="nav('asistencia', this)"><span class="side-ic">✓</span><span class="side-lbl">Asistencia</span></button>
+      <button class="side-btn" id="btn-ninos" onclick="nav('ninos', this)"><span class="side-ic">❋</span><span class="side-lbl">Niños</span></button>
       <span class="nav-sep">análisis</span>
-      <button class="side-btn" id="btn-metricas" onclick="nav('metricas', this)">
-        <span class="side-ic">◈</span><span class="side-lbl">Métricas</span>
-      </button>
-      <button class="side-btn" id="btn-impacto" onclick="nav('impacto', this)">
-        <span class="side-ic">★</span><span class="side-lbl">Impacto</span>
-      </button>
+      <button class="side-btn" id="btn-metricas" onclick="nav('metricas', this)"><span class="side-ic">◈</span><span class="side-lbl">Métricas</span></button>
+      <button class="side-btn" id="btn-impacto" onclick="nav('impacto', this)"><span class="side-ic">★</span><span class="side-lbl">Impacto</span></button>
       <button class="toggle-side" onclick="toggleSide()" id="togBtn">⇄</button>
     </div>
 
-    <!-- MAIN -->
     <div class="body">
 
       <div id="tb-dashboard" class="topbar">
-        <div class="tb-left">
-          <div class="tb-dot"></div>
-          <div><div class="tb-title">Dashboard</div><div class="tb-sub">Miércoles 29 de abril · en vivo</div></div>
-        </div>
-        <div class="tb-right">
-          <button class="pill p-out">Exportar</button>
-          <button class="pill p-green">+ Registro</button>
-        </div>
+        <div class="tb-left"><div class="tb-dot"></div><div><div class="tb-title">Dashboard</div><div class="tb-sub">Los Cabos, BCS · miércoles 29 de abril</div></div></div>
+        <div class="tb-right"><button class="pill p-out">Exportar</button><button class="pill p-green">+ Registro</button></div>
       </div>
       <div id="tb-asistencia" class="topbar hidden">
-        <div class="tb-left">
-          <div class="tb-dot"></div>
-          <div><div class="tb-title">Asistencia</div><div class="tb-sub">Registro del día de hoy</div></div>
-        </div>
+        <div class="tb-left"><div class="tb-dot"></div><div><div class="tb-title">Asistencia</div><div class="tb-sub">Grupo Tortugas · registro de hoy</div></div></div>
         <div class="tb-right"><button class="pill p-green">Guardar</button></div>
       </div>
       <div id="tb-ninos" class="topbar hidden">
-        <div class="tb-left">
-          <div class="tb-dot"></div>
-          <div><div class="tb-title">Niños</div><div class="tb-sub">550 beneficiarios activos</div></div>
-        </div>
+        <div class="tb-left"><div class="tb-dot"></div><div><div class="tb-title">Niños</div><div class="tb-sub">Grupo Tortugas · 22 alumnos</div></div></div>
         <div class="tb-right"><button class="pill p-green">+ Agregar</button></div>
       </div>
       <div id="tb-metricas" class="topbar hidden">
-        <div class="tb-left">
-          <div class="tb-dot"></div>
-          <div><div class="tb-title">Métricas</div><div class="tb-sub">Datos operativos del programa</div></div>
-        </div>
+        <div class="tb-left"><div class="tb-dot"></div><div><div class="tb-title">Métricas</div><div class="tb-sub">Datos operativos del programa</div></div></div>
         <div class="tb-right"><button class="pill p-out">Descargar</button></div>
       </div>
       <div id="tb-impacto" class="topbar hidden">
-        <div class="tb-left">
-          <div class="tb-dot"></div>
-          <div><div class="tb-title">Impacto</div><div class="tb-sub">Reportes para donantes</div></div>
-        </div>
+        <div class="tb-left"><div class="tb-dot"></div><div><div class="tb-title">Impacto</div><div class="tb-sub">Reportes para donantes · 20 años de trabajo</div></div></div>
         <div class="tb-right"><button class="pill p-green">Generar reporte</button></div>
       </div>
 
@@ -139,30 +85,30 @@
         <!-- DASHBOARD -->
         <section id="s-dashboard" class="section active">
           <div class="kpis">
-            <div class="kpi"><div class="kpi-bar" style="background:#1D9E75"></div><div class="kpi-lbl">Comidas hoy</div><div class="kpi-num">547</div><div class="kpi-sub">de 550 esperadas</div></div>
-            <div class="kpi"><div class="kpi-bar" style="background:#378ADD"></div><div class="kpi-lbl">Beneficiarios</div><div class="kpi-num">550</div><div class="kpi-sub">niños activos</div></div>
-            <div class="kpi"><div class="kpi-bar" style="background:#5DCAA5"></div><div class="kpi-lbl">Asistencia semanal</div><div class="kpi-num">94%</div><div class="kpi-sub">+2% vs semana anterior</div></div>
-            <div class="kpi"><div class="kpi-bar" style="background:#E24B4A"></div><div class="kpi-lbl">Sin asistir 3+ días</div><div class="kpi-num red">12</div><div class="kpi-sub">requieren seguimiento</div></div>
+            <div class="kpi"><div class="kpi-bar" style="background:#1D9E75"></div><div class="kpi-lbl">Desayunos hoy</div><div class="kpi-num">543</div><div class="kpi-sub">de 550 esperados</div></div>
+            <div class="kpi"><div class="kpi-bar" style="background:#378ADD"></div><div class="kpi-lbl">Beneficiarios</div><div class="kpi-num">550</div><div class="kpi-sub">niños activos en Los Cabos</div></div>
+            <div class="kpi"><div class="kpi-bar" style="background:#5DCAA5"></div><div class="kpi-lbl">Asistencia semanal</div><div class="kpi-num">96%</div><div class="kpi-sub">+1% vs semana anterior</div></div>
+            <div class="kpi"><div class="kpi-bar" style="background:#E24B4A"></div><div class="kpi-lbl">Sin asistir 3+ días</div><div class="kpi-num red">8</div><div class="kpi-sub">requieren seguimiento</div></div>
           </div>
           <div class="row2">
             <div class="card">
-              <div class="c-head"><span class="c-title">Asistencia semanal</span><span class="bx bx-ok">esta semana</span></div>
+              <div class="c-head"><span class="c-title">Asistencia semanal al desayuno</span><span class="bx bx-ok">esta semana</span></div>
               <div class="cal">
-                <div class="cal-day"><div class="cal-dn">Lun</div><div class="cal-c cf">548</div></div>
-                <div class="cal-day"><div class="cal-dn">Mar</div><div class="cal-c cf">543</div></div>
-                <div class="cal-day"><div class="cal-dn">Mié</div><div class="cal-c cm">510</div></div>
-                <div class="cal-day"><div class="cal-dn">Jue</div><div class="cal-c cf">549</div></div>
-                <div class="cal-day"><div class="cal-dn">Vie</div><div class="cal-c cm">521</div></div>
-                <div class="cal-day"><div class="cal-dn">Sáb</div><div class="cal-c cl">180</div></div>
+                <div class="cal-day"><div class="cal-dn">Lun</div><div class="cal-c cf">547</div></div>
+                <div class="cal-day"><div class="cal-dn">Mar</div><div class="cal-c cf">550</div></div>
+                <div class="cal-day"><div class="cal-dn">Mié</div><div class="cal-c cf">543</div></div>
+                <div class="cal-day"><div class="cal-dn">Jue</div><div class="cal-c cm">528</div></div>
+                <div class="cal-day"><div class="cal-dn">Vie</div><div class="cal-c cm">519</div></div>
+                <div class="cal-day"><div class="cal-dn">Sáb</div><div class="cal-c cl">210</div></div>
                 <div class="cal-day"><div class="cal-dn">Dom</div><div class="cal-c co">—</div></div>
               </div>
             </div>
             <div class="card">
               <div class="c-head"><span class="c-title">Alertas recientes</span></div>
-              <div class="al-row"><div class="al-dot" style="background:#E24B4A"></div><div class="al-txt">María G. lleva 4 días sin asistir</div><div class="al-time">hoy</div></div>
-              <div class="al-row"><div class="al-dot" style="background:#EF9F27"></div><div class="al-txt">Grupo D bajó a 72% asistencia</div><div class="al-time">ayer</div></div>
+              <div class="al-row"><div class="al-dot" style="background:#E24B4A"></div><div class="al-txt">Sofía M. lleva 4 días sin asistir</div><div class="al-time">hoy</div></div>
+              <div class="al-row"><div class="al-dot" style="background:#EF9F27"></div><div class="al-txt">Grupo Delfines bajó a 74%</div><div class="al-time">ayer</div></div>
               <div class="al-row"><div class="al-dot" style="background:#1D9E75"></div><div class="al-txt">Registro del martes completado</div><div class="al-time">mar</div></div>
-              <div class="al-row"><div class="al-dot" style="background:#EF9F27"></div><div class="al-txt">Carlos R. con 3 faltas consecutivas</div><div class="al-time">lun</div></div>
+              <div class="al-row"><div class="al-dot" style="background:#EF9F27"></div><div class="al-txt">Mateo R. con 3 faltas seguidas</div><div class="al-time">lun</div></div>
             </div>
           </div>
         </section>
@@ -171,35 +117,42 @@
         <section id="s-asistencia" class="section hidden">
           <div class="two-col">
             <div class="card">
-              <div class="c-head"><span class="c-title">Grupo A — primaria</span></div>
-              <div class="tog-row"><div class="av avt">LP</div><span class="tname">Luisa Pérez</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
-              <div class="tog-row"><div class="av avb">CR</div><span class="tname">Carlos Ríos</span><button class="tog off" onclick="toggleBtn(this)"></button></div>
-              <div class="tog-row"><div class="av ava">AM</div><span class="tname">Ana Morales</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
-              <div class="tog-row"><div class="av avt">JT</div><span class="tname">José Torres</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
+              <div class="c-head"><span class="c-title">Grupo Tortugas — mañana</span></div>
+              <div class="tog-row"><div class="av avt">LV</div><span class="tname">Lucía Vega</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
+              <div class="tog-row"><div class="av avb">MR</div><span class="tname">Mateo Ríos</span><button class="tog off" onclick="toggleBtn(this)"></button></div>
+              <div class="tog-row"><div class="av ava">IR</div><span class="tname">Itzél Rueda</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
+              <div class="tog-row"><div class="av avt">DM</div><span class="tname">Diego Mora</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
+              <div class="tog-row"><div class="av avb">KS</div><span class="tname">Karla Salinas</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
+              <div class="tog-row"><div class="av ava">RL</div><span class="tname">Rodrigo López</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
             </div>
             <div class="card">
-              <div class="c-head"><span class="c-title">Grupo B — preescolar</span></div>
-              <div class="tog-row"><div class="av avr">MG</div><span class="tname">María García</span><button class="tog off" onclick="toggleBtn(this)"></button></div>
-              <div class="tog-row"><div class="av avb">RL</div><span class="tname">Rodrigo López</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
-              <div class="tog-row"><div class="av ava">SF</div><span class="tname">Sofía Flores</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
-              <div class="tog-row"><div class="av avt">DH</div><span class="tname">Diego Herrera</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
+              <div class="c-head"><span class="c-title">Grupo Tortugas — tarde</span></div>
+              <div class="tog-row"><div class="av avr">SM</div><span class="tname">Sofía Martínez</span><button class="tog off" onclick="toggleBtn(this)"></button></div>
+              <div class="tog-row"><div class="av avb">JC</div><span class="tname">Jesús Castro</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
+              <div class="tog-row"><div class="av ava">PL</div><span class="tname">Paola Luna</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
+              <div class="tog-row"><div class="av avt">AH</div><span class="tname">Andrés Herrera</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
+              <div class="tog-row"><div class="av avb">NF</div><span class="tname">Natalia Flores</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
+              <div class="tog-row"><div class="av ava">OG</div><span class="tname">Omar Gutiérrez</span><button class="tog on" onclick="toggleBtn(this)"></button></div>
             </div>
           </div>
           <div class="save-bar">
-            <span class="save-txt">3 de 4 marcados en Grupo A</span>
+            <span class="save-txt">10 de 12 niños marcados hoy</span>
             <button class="save-btn">Guardar registro</button>
           </div>
         </section>
 
         <!-- NIÑOS -->
         <section id="s-ninos" class="section hidden">
-          <input class="search-bar" placeholder="Buscar por nombre..." />
+          <input class="search-bar" placeholder="Buscar niño por nombre..." />
           <div class="nino-list">
-            <div class="nino"><div class="av avt">LP</div><div class="ni"><div class="ni-name">Luisa Pérez</div><div class="ni-meta">8 años · Grupo A · 22 días asistidos</div><div class="pbar"><div class="pfill" style="width:92%;background:#1D9E75"></div></div></div><span class="bx bx-ok">Regular</span></div>
-            <div class="nino"><div class="av avb">CR</div><div class="ni"><div class="ni-name">Carlos Ríos</div><div class="ni-meta">7 años · Grupo A · 18 días asistidos</div><div class="pbar"><div class="pfill" style="width:72%;background:#EF9F27"></div></div></div><span class="bx bx-w">3 faltas</span></div>
-            <div class="nino"><div class="av ava">AM</div><div class="ni"><div class="ni-name">Ana Morales</div><div class="ni-meta">6 años · Grupo B · 20 días asistidos</div><div class="pbar"><div class="pfill" style="width:83%;background:#1D9E75"></div></div></div><span class="bx bx-ok">Regular</span></div>
-            <div class="nino"><div class="av avr">MG</div><div class="ni"><div class="ni-name">María García</div><div class="ni-meta">5 años · Grupo B · 8 días asistidos</div><div class="pbar"><div class="pfill" style="width:32%;background:#E24B4A"></div></div></div><span class="bx bx-w">Riesgo</span></div>
-            <div class="nino"><div class="av avb">JT</div><div class="ni"><div class="ni-name">José Torres</div><div class="ni-meta">9 años · Grupo A · 3 días asistidos</div><div class="pbar"><div class="pfill" style="width:12%;background:#B4B2A9"></div></div></div><span class="bx bx-n">Nuevo</span></div>
+            <div class="nino"><div class="av avt">LV</div><div class="ni"><div class="ni-name">Lucía Vega</div><div class="ni-meta">6 años · Grupo Tortugas · 20 desayunos recibidos</div><div class="pbar"><div class="pfill" style="width:95%;background:#1D9E75"></div></div></div><span class="bx bx-ok">Regular</span></div>
+            <div class="nino"><div class="av avb">MR</div><div class="ni"><div class="ni-name">Mateo Ríos</div><div class="ni-meta">7 años · Grupo Tortugas · 15 desayunos recibidos</div><div class="pbar"><div class="pfill" style="width:68%;background:#EF9F27"></div></div></div><span class="bx bx-w">3 faltas</span></div>
+            <div class="nino"><div class="av avr">SM</div><div class="ni"><div class="ni-name">Sofía Martínez</div><div class="ni-meta">8 años · Grupo Tortugas · 7 desayunos recibidos</div><div class="pbar"><div class="pfill" style="width:30%;background:#E24B4A"></div></div></div><span class="bx bx-w">Riesgo</span></div>
+            <div class="nino"><div class="av ava">IR</div><div class="ni"><div class="ni-name">Itzél Rueda</div><div class="ni-meta">6 años · Grupo Tortugas · 19 desayunos recibidos</div><div class="pbar"><div class="pfill" style="width:90%;background:#1D9E75"></div></div></div><span class="bx bx-ok">Regular</span></div>
+            <div class="nino"><div class="av avb">JC</div><div class="ni"><div class="ni-name">Jesús Castro</div><div class="ni-meta">7 años · Grupo Tortugas · 4 desayunos recibidos</div><div class="pbar"><div class="pfill" style="width:18%;background:#B4B2A9"></div></div></div><span class="bx bx-n">Nuevo</span></div>
+            <div class="nino"><div class="av avt">KS</div><div class="ni"><div class="ni-name">Karla Salinas</div><div class="ni-meta">7 años · Grupo Tortugas · 21 desayunos recibidos</div><div class="pbar"><div class="pfill" style="width:99%;background:#1D9E75"></div></div></div><span class="bx bx-ok">Regular</span></div>
+            <div class="nino"><div class="av ava">PL</div><div class="ni"><div class="ni-name">Paola Luna</div><div class="ni-meta">8 años · Grupo Tortugas · 17 desayunos recibidos</div><div class="pbar"><div class="pfill" style="width:80%;background:#1D9E75"></div></div></div><span class="bx bx-ok">Regular</span></div>
+            <div class="nino"><div class="av avb">OG</div><div class="ni"><div class="ni-name">Omar Gutiérrez</div><div class="ni-meta">6 años · Grupo Tortugas · 12 desayunos recibidos</div><div class="pbar"><div class="pfill" style="width:55%;background:#EF9F27"></div></div></div><span class="bx bx-w">2 faltas</span></div>
           </div>
         </section>
 
@@ -207,20 +160,20 @@
         <section id="s-metricas" class="section hidden">
           <div class="two-col">
             <div class="card">
-              <div class="c-head"><span class="c-title">Datos clave del mes</span></div>
-              <div class="mrow"><span class="ml">Costo por niño / mes</span><span class="mv">$320 MXN</span></div>
-              <div class="mrow"><span class="ml">Comidas entregadas</span><span class="mv">10,840</span></div>
-              <div class="mrow"><span class="ml">Días operados (año)</span><span class="mv">87 días</span></div>
-              <div class="mrow"><span class="ml">Voluntarios activos</span><span class="mv">12</span></div>
-              <div class="mrow last"><span class="ml">Sin asistir esta semana</span><span class="mv mv-w">12 niños</span></div>
+              <div class="c-head"><span class="c-title">Datos operativos del mes</span></div>
+              <div class="mrow"><span class="ml">Costo por niño / mes</span><span class="mv">$180 MXN</span></div>
+              <div class="mrow"><span class="ml">Desayunos entregados</span><span class="mv">6,000</span></div>
+              <div class="mrow"><span class="ml">Días operados (año)</span><span class="mv">92 días</span></div>
+              <div class="mrow"><span class="ml">Voluntarios activos</span><span class="mv">11</span></div>
+              <div class="mrow last"><span class="ml">Sin asistir esta semana</span><span class="mv mv-w">8 niños</span></div>
             </div>
             <div class="card">
               <div class="c-head"><span class="c-title">Asistencia por grupo</span></div>
-              <div class="brow"><span class="blbl">Grupo A</span><div class="btrack"><div class="bfill" style="width:94%"></div></div><span class="bv">94%</span></div>
-              <div class="brow"><span class="blbl">Grupo B</span><div class="btrack"><div class="bfill" style="width:88%"></div></div><span class="bv">88%</span></div>
-              <div class="brow"><span class="blbl">Grupo C</span><div class="btrack"><div class="bfill" style="width:97%"></div></div><span class="bv">97%</span></div>
-              <div class="brow"><span class="blbl">Grupo D</span><div class="btrack"><div class="bfill bfill-w" style="width:72%"></div></div><span class="bv">72%</span></div>
-              <div class="brow"><span class="blbl">Grupo E</span><div class="btrack"><div class="bfill" style="width:91%"></div></div><span class="bv">91%</span></div>
+              <div class="brow"><span class="blbl">Tortugas</span><div class="btrack"><div class="bfill" style="width:96%"></div></div><span class="bv">96%</span></div>
+              <div class="brow"><span class="blbl">Delfines</span><div class="btrack"><div class="bfill bfill-w" style="width:74%"></div></div><span class="bv">74%</span></div>
+              <div class="brow"><span class="blbl">Pelícanos</span><div class="btrack"><div class="bfill" style="width:91%"></div></div><span class="bv">91%</span></div>
+              <div class="brow"><span class="blbl">Ballenas</span><div class="btrack"><div class="bfill" style="width:98%"></div></div><span class="bv">98%</span></div>
+              <div class="brow"><span class="blbl">Mantaraya</span><div class="btrack"><div class="bfill" style="width:88%"></div></div><span class="bv">88%</span></div>
             </div>
           </div>
         </section>
@@ -228,9 +181,9 @@
         <!-- IMPACTO -->
         <section id="s-impacto" class="section hidden">
           <div class="impact-nums">
-            <div class="icard"><div class="inum">87K</div><div class="ilbl">Comidas entregadas este año</div></div>
-            <div class="icard"><div class="inum">550</div><div class="ilbl">Niños activos en el programa</div></div>
-            <div class="icard"><div class="inum">94%</div><div class="ilbl">Asistencia promedio mensual</div></div>
+            <div class="icard"><div class="inum">72K</div><div class="ilbl">Desayunos entregados este año</div></div>
+            <div class="icard"><div class="inum">550</div><div class="ilbl">Niños beneficiarios en Los Cabos</div></div>
+            <div class="icard"><div class="inum">20</div><div class="ilbl">Años construyendo futuro en BCS</div></div>
           </div>
           <div class="card">
             <div class="c-head"><span class="c-title">Reportes listos</span></div>
@@ -238,6 +191,7 @@
             <div class="rep">Reporte anual para donantes <span>→</span></div>
             <div class="rep">Niños con ausentismo esta semana <span>→</span></div>
             <div class="rep">Costo total del programa este mes <span>→</span></div>
+            <div class="rep">Impacto acumulado 20 años <span>→</span></div>
           </div>
         </section>
 

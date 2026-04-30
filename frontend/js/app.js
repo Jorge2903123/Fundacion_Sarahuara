@@ -6,8 +6,10 @@ let profileOpen = false;
 function nav(id, el) {
   pages.forEach(s => {
     document.getElementById('s-' + s).classList.remove('active');
+    document.getElementById('s-' + s).classList.add('hidden');
     document.getElementById('tb-' + s).classList.add('hidden');
   });
+  document.getElementById('s-' + id).classList.remove('hidden');
   document.getElementById('s-' + id).classList.add('active');
   document.getElementById('tb-' + id).classList.remove('hidden');
   document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
