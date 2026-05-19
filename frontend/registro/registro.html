@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    /* Mismos estilos base de tu código original */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --teal:      #4ECBA0;
+      --teal-dark: #38A882;
+      --bg:         #F4F2ED;
+      --card:      #FAFAF7;
+      --border:    #E0DDD5;
+      --text:      #1C2B2B;
+      --muted:     #7A8A85;
+      --shadow:    0 24px 64px rgba(0,0,0,.10), 0 4px 16px rgba(0,0,0,.06);
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      padding: 32px 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 420px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      animation: slideUp .55s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-header {
+      padding: 18px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .card-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .card-body {
+      padding: 40px 32px 32px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    input:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(78,203,160,.15);
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      cursor: pointer;
+      text-align: center;
+      transition: all .2s;
+      box-shadow: 0 4px 14px rgba(78,203,160,.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(78,203,160,.45);
+    }
+
+    .card-footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .card-footer a {
+      color: var(--teal-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <div class="header-dot"></div>
+    <h1>Bienvenido</h1>
+  </div>
+
+  <div class="card-body">
+    <form action="#">
+      <div class="field">
+        <label for="usuario">Introduce usuario</label>
+        <input type="text" id="usuario" name="usuario" placeholder="Nombre de usuario" required/>
+      </div>
+
+      <div class="field">
+        <label for="password">Introduce contraseña</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required/>
+      </div>
+
+      <button class="btn-primary" type="submit">Iniciar Sesión</button>
+    </form>
+
+    <div class="card-footer">
+      ¿No tienes cuenta? <a href="../registro/registro.html">Regístrate</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
